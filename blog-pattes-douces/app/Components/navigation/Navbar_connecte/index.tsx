@@ -7,7 +7,7 @@ import Activity from "../../../Activity/page";
 // import Logo from "./Components/Navbar/Logo";
 // import Button from "./Components/Navbar/Navbar";
 
-const Navbar = () => {
+const Navbar_connecte = () => {
   return (
     <div className="navbar">
       <div
@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className="flex justify-end items-center h-full">
             <ul className="hidden md:flex gap-x-6 text-white">
               <li>
-                <a href="/Connexion">Se connecter</a>
+                <a href="/Connexion">Profil</a>
               </li>
               <li>
                 <a href="/Feed">Feed</a>
@@ -44,4 +44,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar_connecte;
