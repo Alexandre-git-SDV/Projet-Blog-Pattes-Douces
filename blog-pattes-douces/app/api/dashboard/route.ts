@@ -11,10 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       orderBy: { date: "desc" },
       select: {
         id: true,
-        id_user: true,
         titre: true,
         date: true,
-        vue: true,
+        vue: true, // 'vues' doit être le nom correct de la relation
         reaction1: true,
         reaction2: true,
       },

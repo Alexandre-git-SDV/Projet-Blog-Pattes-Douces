@@ -1,10 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Feedhome from "../../feed";
-import Profile from "../../../Profil/page";
-import Feed from "../../../Feed/page";
-import Activity from "../../../Activity/page";
-// import Dashboard from "../../dashboard/page";
 // import Logo from "./Components/Navbar/Logo";
 // import Button from "./Components/Navbar/Navbar";
 
@@ -20,23 +15,24 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-end items-center h-full">
-            <ul className="hidden md:flex items-center gap-x-6 text-white">
+            <ul className="hidden md:flex gap-x-6 text-white">
               <li>
-                <a href="/Feed">Accueil</a>
+                <Link href="/Profil">
+                  <p>Profil</p>
+                </Link>
               </li>
               <li>
-                <a href="/Connexion">Se Connecter</a>
+                <a href="/Feed">Feed</a>
               </li>
               <li>
-              <a href="/Feed">Feed</a>
+                <Link href="/Activity">
+                  <p>Activité</p>
+                </Link>
               </li>
               <li>
-              <Link href="/Activity">
-                <p>Activité</p>
-              </Link>
-              </li>
-              <li>
-              <a href="/Dashboard">Dashboard</a>
+                <Link href="/dashboard">
+                  <p>Dashboard</p>
+                </Link>
               </li>
             </ul>
           </div>
