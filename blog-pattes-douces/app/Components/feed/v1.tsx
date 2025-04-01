@@ -1,10 +1,6 @@
 "use client";
-import { use, useEffect, useState } from "react";
-import Link from "next/link";
-import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/react/24/solid';
-import { EyeIcon } from '@heroicons/react/24/solid';
+import { useEffect, useState } from "react";
 
-// Types
 type Article = {
   id: string;
   auteur: User;
@@ -15,10 +11,8 @@ type Article = {
   vue: any[];
   reaction1: any[];
   reaction2: any[];
-  commentaires: {
-    id: string;
-  }[];
-}
+};
+
 type User = {
   id: string;
   pseudo: string;
@@ -37,9 +31,8 @@ export default function Feedhome() {
       const storedPseudo = localStorage.getItem("pseudo");
       setPseudo(storedPseudo);
     }
-  }
-  , []);
-  
+  }, []);
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -145,9 +138,9 @@ export default function Feedhome() {
             </a>
 
             <div className="flex space-x-4">
-              <p className="text-sm text-gray-400"><EyeIcon className="h-5 w-5 inline-block" />{article.vue.length}</p>
-              <p className="text-sm text-blue-400"><HandThumbUpIcon className="h-5 w-5 inline-block" />{article.reaction1.length}</p>
-              <p className="text-sm text-red-400"><HandThumbDownIcon className="h-5 w-5 inline-block" />{article.reaction2.length}</p>             
+              <p className="text-sm text-gray-400">Vues : {article.vue.length}</p>
+              <p className="text-sm text-blue-400">Like : {article.reaction1.length}</p>
+              <p className="text-sm text-red-400">Dislike : {article.reaction2.length}</p>
             </div>
 
             <button
