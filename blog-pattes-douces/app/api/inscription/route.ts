@@ -1,38 +1,25 @@
-import { prisma } from "@/src/db/prisma";
+import prisma  from "@/src/db/prisma1";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
-    const { pseudo, mail, biographie, password } = await request.json();
-
-    if (!pseudo) {
-        return NextResponse.json({ message: "Veuillez renseigner un pseudo" }, { status: 400 });
-    }
-    if (!mail) {
-        return NextResponse.json({ message: "Veuillez renseigner un mail" }, { status: 400 });
-    }
-    if (!biographie) {
-        return NextResponse.json({ message: "Veuillez renseigner une biographie" }, { status: 400 });
-    }
-    if (!password) {
-        return NextResponse.json({ message: "Veuillez renseigner un mot de passe" }, { status: 400 });
-    }
+    const { pseudo, email, biographie, password } = await request.json();
 
     const existingUser = await prisma.user.findFirst({
         where: {
             OR: [
                 { pseudo: pseudo },
-                { email: mail }
+                { email: email }
             ]
         }
     });
 
     if (existingUser) {
         if (existingUser.pseudo === pseudo) {
-            return NextResponse.json({ message: "Ce pseudo est déjà utilisé" }, { status: 400 });
+            return await NextResponse.json({ message: "Ce pseudo est déjà utilisé" }, { status: 400 });
         }
-        if (existingUser.email === mail) {
-            return NextResponse.json({ message: "Cet email est déjà utilisé" }, { status: 400 });
+        if (existingUser.email === email) {
+            return await NextResponse.json({ message: "Cet email est déjà utilisé" }, { status: 400 });
         }
     }
 
@@ -41,7 +28,7 @@ export async function POST(request: Request) {
     await prisma.user.create({
         data: {
             pseudo,
-            email: mail,
+            email: email,
             biographie,
             password: hashedPassword,
         },
